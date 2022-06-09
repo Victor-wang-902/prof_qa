@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+#
+#SBATCH --job-name=myTrainTask2CPU
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=8GB
+#SBATCH --output=log_split_%A_%a.out
+#SBATCH --error=log_split_%A_%a.err
+#SBATCH --time=5-00:00:00
+
+export PATH=/gpfsnyu/home/zw2374/anaconda3/envs/sbert_exp/bin:$PATH
+module purge
+module load cuda/11.3
+source activate sbert_exp
+echo $SHELL
+which python
+which conda
+
+python split_data.py \
+  prof_qa/data_all/sentence_pairs.csv  \

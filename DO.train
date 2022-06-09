@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+#
+#SBATCH --job-name=myTrainTask2GPU
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=8GB
+#SBATCH --gres=gpu:1
+#SBATCH --output=log_train_%A_%a.out
+#SBATCH --error=log_train_%A_%a.err
+#SBATCH --time=5-00:00:00
+
+#export PATH=/gpfsnyu/packages/anaconda3/5.2.0/bin:$PATH
+
+#module purge
+#module load cuda/11.2
+#conda init bash
+#conda activate sbert_exp
+#echo $SHELL
+#which python
+#which conda
+
+export PATH=/gpfsnyu/home/zw2374/anaconda3/envs/sbert_exp/bin:$PATH
+module purge
+module load cuda/11.3
+source activate sbert_exp
+echo $SHELL
+
+which python
+which conda
+mkdir model_v33
+mkdir checkpoint_v33
+#rm prof_qa/data_all/train_offline/train.csv
+#rm prof_qa/data_all/eval_offline/eval.csv
+python fine_tune.py \
+  1 \
+  model_cache/sentence-transformers_multi-qa-MiniLM-L6-cos-v1 \
+  model_v33 \
+  checkpoint_v33 \
+  30 \
+  2 \
+  10 \
+  2 \
+  1 \
+  0 \
+  1 \
+  500000 \
+
+#  2 \
+#  model_cache/sentence-transformers_multi-qa-MiniLM-L6-cos-v1 \
+#  model_v12 \
+#  checkpoint_v12 \
+#  prof_qa/data_all/train_offline/train_intent.csv  \
+#  prof_qa/data_all/eval_offline/eval_intent.csv \
+
+

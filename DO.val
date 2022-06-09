@@ -1,0 +1,32 @@
+#!/usr/bin/bash
+#
+#SBATCH --job-name=myTrainTask2GPU
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=8GB
+#SBATCH --output=log_val_%A_%a.out
+#SBATCH --error=log_val_%A_%a.err
+#SBATCH --time=5-00:00:00
+
+#export PATH=/gpfsnyu/packages/anaconda3/5.2.0/bin:$PATH
+
+#module purge
+#module load cuda/11.2
+#conda init bash
+#conda activate sbert_exp
+#echo $SHELL
+#which python
+#which conda
+
+export PATH=/gpfsnyu/home/zw2374/anaconda3/envs/sbert_exp/bin:$PATH
+module purge
+source activate sbert_exp
+echo $SHELL
+
+#rm prof_qa/data_all/train_offline/train.csv
+#rm prof_qa/data_all/eval_offline/eval.csv
+python compare.py \
+
+
+
+
