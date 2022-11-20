@@ -1,5 +1,5 @@
 # Professor Q&A
-This is a simple preliminary project testing [SBERT]{https://www.sbert.net/} fine-tuning with templated data augmentation.
+This is a simple preliminary project testing [SBERT](https://www.sbert.net/) fine-tuning with templated data augmentation.
 By running
 ```
 DO.train
